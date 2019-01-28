@@ -10,23 +10,23 @@ import { AuthService } from 'src/app/services/auth/auth.service';
 export class LoginPageComponent implements OnInit {
 
   loginForm: FormGroup;
+  submitted: boolean = false;
 
   constructor(
     private auth : AuthService,
     private formBuilder: FormBuilder
-    ) { 
-      this.loginForm = this.formBuilder.group({
-        username : ['',Validators.required],
-        password : ['',Validators.required]
-      });
-    }
+  ) {}
 
   ngOnInit() {
-    
+    this.loginForm = this.formBuilder.group({
+      username : ['', Validators.required],
+      password : ['', Validators.required]
+    }); 
   }
 
   doLogin(){
-    console.log("Creadentials");
+    console.log('Creadentials');
+    this.submitted = true;
     this.auth.login();
   }
 }

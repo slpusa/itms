@@ -3,17 +3,17 @@
     <h1 class="text-align-center text-bold">ITMS</h1>
     <hr />
     <br />
-    <form [formGroup]="loginForm"  (submit)="doLogin()">
+    <form [formGroup]="loginForm" (ngSubmit)="doLogin()">
       <div class="form-group">
         <label>Username</label>
         <input
           type="text"
           formControlName="username"
           class="form-control"
-          [ngClass]="{ 'is-invalid': submitted && f.username.errors }"
+          [ngClass]="{ 'is-invalid': submitted && loginForm.get('username').invalid }"
         />
-        <div *ngIf="submitted && f.username.errors" class="invalid-feedback">
-          <div *ngIf="f.username.errors.required">Username is required</div>
+        <div *ngIf="submitted && loginForm.get('username').invalid && loginForm.get('username').dirty" class="invalid-feedback">
+          <div *ngIf="loginForm.get('username').hasError('required')">Username is required</div>
         </div>
       </div>
       <p><a href="#">Forgot Password</a></p>
